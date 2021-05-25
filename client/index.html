@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 - Consume API</title>
+  <script>
+    const completed = (e) => {
+      const data = JSON.parse(e.target.responseText);
+      document.getElementById('result').innerHTML = `Tipo de Cambio Dolares ${data.TipoCompraDolares}`;
+    };
+
+    const error = () => console.log(this.responseText);
+
+    function getHelloWorld() {
+      const ajaxRequest = new XMLHttpRequest();
+      ajaxRequest.addEventListener("load", completed);
+      ajaxRequest.addEventListener("error", error);
+      ajaxRequest.open("GET", "http://localhost:3000/tipocambio");
+      ajaxRequest.send();
+    }
+  </script>
+</head>
+
+<body>
+  <button onclick="getHelloWorld();">Hello</button>
+  <h3>Results:</h3>
+  <div id="result"></div>
+</body>
+
+</html>
